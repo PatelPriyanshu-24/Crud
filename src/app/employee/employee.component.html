@@ -1,0 +1,155 @@
+
+<nav
+  class="navbar navbar-expand-lg bg-dark bg-body-tertiary p-4"
+  data-bs-theme="dark"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand">Employee Management</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <!-- Button trigger modal -->
+          <!-- <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Add Employee
+          </button> -->
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <form #userform="ngForm" >
+                  <div class="mb-3">
+                    <label
+                      for="exampleInputEmail1"
+                      class="form-label text-white text-center"
+                      >Email address</label
+                    >
+                    <input
+                      type="email"
+                      class="form-control text-white"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      [(ngModel)]="employee.email"
+                      name="email"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label
+                      for="exampleInputname"
+                      class="form-label text-white text-center"
+                      >Name</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control text-white"
+                      id="Name"
+                      name="name"
+                      [(ngModel)]="employee.fullname"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label
+                      for="exampleInputnumber"
+                      class="form-label text-white text-center"
+                      >Phone Number</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control text-white"
+                      id="exampleInputnumber"
+                      name="phonenumber"
+                      [(ngModel)]="employee.mobile"
+                    />
+                  </div>
+
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                      (click)="close()"
+                    >
+                      Close
+                    </button>
+                    <button type="submit" class="btn btn-primary"data-bs-dismiss="modal" (click)="saveEmployee(userform)" *ngIf="employee.employeID ==0 ">
+                      Submit
+                    </button>
+                    <button type="submit" class="btn btn-primary"data-bs-dismiss="modal" (click)="onsave()" *ngIf="employee.employeID !==0 ">
+                      update
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <button
+            type="button"
+            class="btn btn-light border-info border-3 rounded-3"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+          <img src="https://cdn-icons-png.flaticon.com/128/748/748137.png" alt="" height="20px">
+            Add Employee
+          </button>
+      </div>
+    </div>
+  
+</nav>
+
+<!-- user data list -->
+
+<div >
+<table class="table table-stripe">
+    <thead>
+      <tr>
+        
+        <th scope="col">Email </th>
+        <th scope="col">Full Name</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody class="table-secondary my-2">
+      <tr *ngFor="let item of employeeArr" >
+        
+        <td>{{item.email}}</td>
+        <td>{{item.fullname}}</td>
+        <td>{{item.mobile}}</td>
+        <td>
+            <!-- <button type="button" class="btn btn-danger mx-2" (click)="ondelete(item.employeID)">Delete</button> -->
+            <img src="https://cdn-icons-png.flaticon.com/128/4980/4980658.png" alt="" (click)="ondelete(item.employeID)" height="40px" class="mx-1">
+
+            <button type="button" class="btn btn-outline-primary  mx-1"  data-bs-toggle="modal"
+            data-bs-target="#exampleModal" (click)="onupdate(item)"><img src="https://cdn-icons-png.flaticon.com/128/8188/8188338.png" alt="" height="20px"></button>
+            
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
